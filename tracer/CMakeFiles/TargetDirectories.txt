@@ -1,0 +1,5 @@
+/Users/dgoncalves/Downloads/tracer/CMakeFiles/rebuild_cache.dir
+/Users/dgoncalves/Downloads/tracer/CMakeFiles/edit_cache.dir
+/Users/dgoncalves/Downloads/tracer/src/CMakeFiles/rebuild_cache.dir
+/Users/dgoncalves/Downloads/tracer/src/CMakeFiles/edit_cache.dir
+/Users/dgoncalves/Downloads/tracer/src/CMakeFiles/ESCViewer2021.dir

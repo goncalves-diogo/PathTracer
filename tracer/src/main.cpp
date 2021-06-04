@@ -1,24 +1,31 @@
 
 #include <chrono>
+#include <condition_variable>
+#include <cstdlib>
 #include <cstring>
 #include <filesystem>
 #include <fstream>
+#include <functional>
 #include <future>
 #include <iostream>
+#include <mutex>
+#include <ostream>
 #include <random>
 #include <stdexcept>
 #include <string>
 #include <thread>
 #include <type_traits>
+#include <utility>
 #include <vector>
 
-//#include "AABB.h"
-#include "BVH.h"
+#include "BVH.cpp"
 #include "math/vec.h"
 #include "scene/camera.h"
 #include "scene/ray_triangle.h"
 #include "scene/scene.h"
 #include "scene/sceneloader.h"
+
+#include "SafeQueue.h"
 
 #include <algorithm>
 #include <array>
@@ -42,11 +49,9 @@ bool intersect(const tracer::scene &SceneMesh, const tracer::vec3<float> &ori,
               SceneMesh.geometry[i].vertex[face[2]], t, u, v)) {
         geomID = i;
         primID = f;
-        // return true;
       }
     }
   }
-  // return false;
   return (geomID != -1 && primID != -1);
 }
 
@@ -67,18 +72,17 @@ bool occlusion(const tracer::scene &SceneMesh, const tracer::vec3<float> &ori,
   return false;
 }
 
-tracer::vec3<float> *render(int render_height, int render_width,
-                            int image_height, int image_width,
-                            tracer::scene SceneMesh, tracer::camera cam,
-                            tracer::vec3<float> *image,
-                            std::uniform_real_distribution<float> distrib) {
+tracer::vec3<float> *
+render(int render_height, int render_width, int image_height, int image_width,
+       tracer::scene SceneMesh, tracer::camera cam, tracer::vec3<float> *image,
+       std::uniform_real_distribution<float> distrib, Node *tree, int acc) {
 
   std::mt19937 gen(rd());
 
   int h = render_height;
-  // int w = render_width;
-  // for (int h = image_height - 1; h >= render_height; --h) {
-  for (int w = render_width; w < image_width; w++) {
+  int w = render_width;
+  for (int aq = 0; aq < acc; aq++) {
+    std::cout << "Pixel X:" << h << " Pixel Y:" << w << std::endl;
     size_t geomID = -1;
     size_t primID = -1;
 
@@ -89,74 +93,101 @@ tracer::vec3<float> *render(int render_height, int render_width,
     float t = std::numeric_limits<float>::max();
     float u = 0;
     float v = 0;
-    if (intersect(SceneMesh, ray.origin, ray.dir, t, u, v, geomID, primID)) {
-      auto i = geomID;
-      auto f = primID;
-      auto face = SceneMesh.geometry[i].face_index[f];
-      auto N = normalize(cross(SceneMesh.geometry[i].vertex[face[1]] -
-                                   SceneMesh.geometry[i].vertex[face[0]],
-                               SceneMesh.geometry[i].vertex[face[2]] -
-                                   SceneMesh.geometry[i].vertex[face[0]]));
 
-      if (!SceneMesh.geometry[i].normals.empty()) {
-        auto N0 = SceneMesh.geometry[i].normals[face[0]];
-        auto N1 = SceneMesh.geometry[i].normals[face[1]];
-        auto N2 = SceneMesh.geometry[i].normals[face[2]];
-        N = normalize(N1 * u + N2 * v + N0 * (1 - u - v));
-      }
+    std::vector<int> result;
+    if (node_intersect(tree, ray, result)) {
+      if (intersect(SceneMesh, ray.origin, ray.dir, t, u, v, geomID, primID)) {
+        auto i = geomID;
+        auto f = primID;
+        auto face = SceneMesh.geometry[i].face_index[f];
+        auto N = normalize(cross(SceneMesh.geometry[i].vertex[face[1]] -
+                                     SceneMesh.geometry[i].vertex[face[0]],
+                                 SceneMesh.geometry[i].vertex[face[2]] -
+                                     SceneMesh.geometry[i].vertex[face[0]]));
 
-      for (auto &lightID : SceneMesh.light_sources) {
-        auto light = SceneMesh.geometry[lightID];
-        light.face_index.size();
-        std::uniform_int_distribution<int> distrib1(0, light.face_index.size() -
-                                                           1);
+        if (!SceneMesh.geometry[i].normals.empty()) {
+          auto N0 = SceneMesh.geometry[i].normals[face[0]];
+          auto N1 = SceneMesh.geometry[i].normals[face[1]];
+          auto N2 = SceneMesh.geometry[i].normals[face[2]];
+          N = normalize(N1 * u + N2 * v + N0 * (1 - u - v));
+        }
 
-        int faceID = distrib1(gen);
-        const auto &v0 = light.vertex[faceID];
-        const auto &v1 = light.vertex[faceID];
-        const auto &v2 = light.vertex[faceID];
+        for (auto &lightID : SceneMesh.light_sources) {
+          auto light = SceneMesh.geometry[lightID];
+          light.face_index.size();
+          std::uniform_int_distribution<int> distrib1(
+              0, light.face_index.size() - 1);
 
-        auto P = v0 + ((v1 - v0) * float(distrib(gen)) +
-                       (v2 - v0) * float(distrib(gen)));
+          int faceID = distrib1(gen);
+          const auto &v0 = light.vertex[faceID];
+          const auto &v1 = light.vertex[faceID];
+          const auto &v2 = light.vertex[faceID];
 
-        auto hit =
-            ray.origin + ray.dir * (t - std::numeric_limits<float>::epsilon());
-        auto L = P - hit;
+          auto P = v0 + ((v1 - v0) * float(distrib(gen)) +
+                         (v2 - v0) * float(distrib(gen)));
 
-        auto len = tracer::length(L);
+          auto delta =
+              tracer::vec2<float>(1.f / image_width, 1.f / image_height);
+          auto random1 = ((float(distrib(gen)) * 2) - 1);
+          auto random2 = ((float(distrib(gen)) * 2) - 1);
+          auto newrayDir =
+              ray.dir * (t - std::numeric_limits<float>::epsilon());
+          newrayDir.x +=
+              delta.x * (cos(random1) * random2 + sin(random1) * random2);
+          newrayDir.y +=
+              delta.y * (sin(random1) * random2 + cos(random1) * random2);
 
-        t = len - std::numeric_limits<float>::epsilon();
+          auto hit = ray.origin + newrayDir;
 
-        L = tracer::normalize(L);
+          auto L = P - hit;
 
-        auto mat = SceneMesh.geometry[i].object_material;
-        auto c =
-            (mat.ka * 0.5f + mat.ke) / float(SceneMesh.light_sources.size());
+          auto len = tracer::length(L);
 
-        if (occlusion(SceneMesh, hit, L, t))
-          continue;
+          t = len - std::numeric_limits<float>::epsilon();
 
-        auto d = dot(N, L);
+          L = tracer::normalize(L);
 
-        if (d <= 0)
-          continue;
+          auto mat = SceneMesh.geometry[i].object_material;
+          auto c =
+              (mat.ka * 0.5f + mat.ke) / float(SceneMesh.light_sources.size());
 
-        auto H = normalize((N + L) * 2.f);
+          if (occlusion(SceneMesh, hit, L, t))
+            continue;
 
-        c = c + (mat.kd * d + mat.ks * pow(dot(N, H), mat.Ns)) /
-                    float(SceneMesh.light_sources.size());
+          auto d = dot(N, L);
 
-        image[h * image_width + w].r += c.r;
-        image[h * image_width + w].g += c.g;
-        image[h * image_width + w].b += c.b;
+          if (d <= 0)
+            continue;
+
+          auto H = normalize((N + L) * 2.f);
+
+          c = c + (mat.kd * d + mat.ks * pow(dot(N, H), mat.Ns)) /
+                      float(SceneMesh.light_sources.size());
+
+          image[h * image_width + w].r += (c.r / acc);
+          image[h * image_width + w].g += (c.g / acc);
+          image[h * image_width + w].b += (c.b / acc);
+        }
       }
     }
   }
-  //}
   return image;
 }
 
-template <typename IdxType> class abc {};
+// This will ran by a thread and it will contain every pixel
+void thread_manager(SafeQueue<std::pair<int, int>> thr, int image_height,
+                    int image_width, tracer::scene SceneMesh,
+                    tracer::camera cam, tracer::vec3<float> *image,
+                    std::uniform_real_distribution<float> distrib, int acc) {
+
+  std::pair<int, int> p;
+  while (true) {
+    p = thr.dequeue();
+
+    std::thread(render, p.first, p.second, image_height, image_width, SceneMesh,
+                cam, image, distrib, &acc);
+  }
+}
 
 int main(int argc, char *argv[]) {
   std::string modelname;
@@ -164,6 +195,7 @@ int main(int argc, char *argv[]) {
   bool hasEye{false}, hasLook{false};
   tracer::vec3<float> eye(0, 1, 3), look(0, 1, 0);
   tracer::vec2<uint> windowSize(1024, 768);
+  int acc = 1;
 
   for (int arg = 0; arg < argc; arg++) {
     if (std::string(argv[arg]) == "-m") {
@@ -230,18 +262,6 @@ int main(int argc, char *argv[]) {
     ModelLoaded = true;
   }
 
-  // create bvh_tree
-  std::vector<AABB> scene_geom;
-
-  for (auto geom : SceneMesh.geometry) {
-    AABB ab = AABB();
-    for (auto abc : geom.vertex)
-      ab.extend(abc);
-    scene_geom.push_back(ab);
-  }
-
-  //BVH tree = BVH(scene_geom);
-
   int image_width = windowSize.x;
   int image_height = windowSize.y;
 
@@ -252,24 +272,51 @@ int main(int argc, char *argv[]) {
       new tracer::vec3<float>[image_height * image_width];
 
   std::uniform_real_distribution<float> distrib(0, 1.f);
-  std::vector<std::thread> threads;
+
+  std::vector<AABB> scene_geom;
+  std::vector<AABB> buf;
+  std::vector<const AABB *> objs;
+
+  // Translate from SceneMesh to be usable by the BVH tree
+  for (auto geom : SceneMesh.geometry) {
+    AABB *ab = new AABB();
+    for (auto abc : geom.vertex)
+      ab->append(abc);
+    scene_geom.push_back(*ab);
+  }
+  buf = std::move(scene_geom);
+  buf.shrink_to_fit();
+  objs.reserve(buf.size());
+  const AABB *ptr = &buf[0];
+  for (size_t i = 0; i < buf.size(); i++)
+    objs.emplace_back(&ptr[i]);
+  //
 
   auto start_time = std::chrono::high_resolution_clock::now();
 
-  for (int i = 0; i < image_height; i++) {
-    // Need to add this to make every ray will de dealt by a thread
-    // for (int w = 0; w < image_width; w++) {
-    int render_height = image_height - i;
-    int render_width = 0;
+  // Create the tree
+  Node *tree = new Node();
+  tree = bvh_build(objs, 0);
 
-    threads.push_back(std::thread(render, render_height, render_width,
-                                  image_height, image_width, SceneMesh, cam,
-                                  image, distrib));
-    //}
+  int render_height = 0;
+  int render_width = 0;
+
+  SafeQueue<std::pair<int, int>> thr;
+
+  // Create the thread that will manage the execution
+  std::thread(thread_manager, thr, image_height, image_width, SceneMesh, cam,
+              image, distrib, tree, &acc);
+
+  // Main cicle the will send a thread for each pixel
+  for (int w = 0; w < image_width; w++) {
+    for (int i = image_height - 1; i >= 0; --i) {
+      int render_height = i;
+      int render_width = w;
+
+      // enqueue every single pixel, pushing a pixel containing the render_width and render_height of the pixel
+      thr.enqueue(std::pair<int, int>(render_height, render_width));
+    }
   }
-
-  for (auto &thr : threads)
-    thr.join();
 
   auto end_time = std::chrono::high_resolution_clock::now();
 

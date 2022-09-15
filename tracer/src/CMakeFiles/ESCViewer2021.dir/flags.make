@@ -4,7 +4,7 @@
 # compile CXX with /Library/Developer/CommandLineTools/usr/bin/c++
 CXX_DEFINES = -DCONFIG_SIMD_WIDTH=8 -DCONFIG_TARGET_AVX2=1 -DUSE_BVH -DUSE_ISPC
 
-CXX_INCLUDES = -I/Users/dgoncalves/Downloads/tracer
+CXX_INCLUDES = -I/Users/dgoncalves/code/PathTracer/tracer
 
-CXX_FLAGS = -O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.0.sdk -fPIE -std=gnu++17
+CXX_FLAGS = -O3 -DNDEBUG -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -fPIE -std=gnu++17
 

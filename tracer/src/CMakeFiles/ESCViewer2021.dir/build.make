@@ -44,19 +44,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.20.1/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.20.5/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.20.1/bin/cmake -E rm -f
+RM = /usr/local/Cellar/cmake/3.20.5/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/dgoncalves/Downloads/tracer
+CMAKE_SOURCE_DIR = /Users/dgoncalves/code/PathTracer/tracer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/dgoncalves/Downloads/tracer
+CMAKE_BINARY_DIR = /Users/dgoncalves/code/PathTracer/tracer
 
 # Include any dependencies generated for this target.
 include src/CMakeFiles/ESCViewer2021.dir/depend.make
@@ -72,30 +72,30 @@ include src/CMakeFiles/ESCViewer2021.dir/flags.make
 src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o: src/CMakeFiles/ESCViewer2021.dir/flags.make
 src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o: src/scene/sceneloader.cpp
 src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o: src/CMakeFiles/ESCViewer2021.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dgoncalves/Downloads/tracer/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o"
-	cd /Users/dgoncalves/Downloads/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o -MF CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o.d -o CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o -c /Users/dgoncalves/Downloads/tracer/src/scene/sceneloader.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dgoncalves/code/PathTracer/tracer/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o"
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o -MF CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o.d -o CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o -c /Users/dgoncalves/code/PathTracer/tracer/src/scene/sceneloader.cpp
 
 src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.i"
-	cd /Users/dgoncalves/Downloads/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dgoncalves/Downloads/tracer/src/scene/sceneloader.cpp > CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.i
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dgoncalves/code/PathTracer/tracer/src/scene/sceneloader.cpp > CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.i
 
 src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.s"
-	cd /Users/dgoncalves/Downloads/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dgoncalves/Downloads/tracer/src/scene/sceneloader.cpp -o CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.s
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dgoncalves/code/PathTracer/tracer/src/scene/sceneloader.cpp -o CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.s
 
 src/CMakeFiles/ESCViewer2021.dir/main.cpp.o: src/CMakeFiles/ESCViewer2021.dir/flags.make
 src/CMakeFiles/ESCViewer2021.dir/main.cpp.o: src/main.cpp
 src/CMakeFiles/ESCViewer2021.dir/main.cpp.o: src/CMakeFiles/ESCViewer2021.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dgoncalves/Downloads/tracer/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/ESCViewer2021.dir/main.cpp.o"
-	cd /Users/dgoncalves/Downloads/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ESCViewer2021.dir/main.cpp.o -MF CMakeFiles/ESCViewer2021.dir/main.cpp.o.d -o CMakeFiles/ESCViewer2021.dir/main.cpp.o -c /Users/dgoncalves/Downloads/tracer/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/dgoncalves/code/PathTracer/tracer/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object src/CMakeFiles/ESCViewer2021.dir/main.cpp.o"
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT src/CMakeFiles/ESCViewer2021.dir/main.cpp.o -MF CMakeFiles/ESCViewer2021.dir/main.cpp.o.d -o CMakeFiles/ESCViewer2021.dir/main.cpp.o -c /Users/dgoncalves/code/PathTracer/tracer/src/main.cpp
 
 src/CMakeFiles/ESCViewer2021.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/ESCViewer2021.dir/main.cpp.i"
-	cd /Users/dgoncalves/Downloads/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dgoncalves/Downloads/tracer/src/main.cpp > CMakeFiles/ESCViewer2021.dir/main.cpp.i
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/dgoncalves/code/PathTracer/tracer/src/main.cpp > CMakeFiles/ESCViewer2021.dir/main.cpp.i
 
 src/CMakeFiles/ESCViewer2021.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/ESCViewer2021.dir/main.cpp.s"
-	cd /Users/dgoncalves/Downloads/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dgoncalves/Downloads/tracer/src/main.cpp -o CMakeFiles/ESCViewer2021.dir/main.cpp.s
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && /Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/dgoncalves/code/PathTracer/tracer/src/main.cpp -o CMakeFiles/ESCViewer2021.dir/main.cpp.s
 
 # Object files for target ESCViewer2021
 ESCViewer2021_OBJECTS = \
@@ -109,20 +109,20 @@ bin/ESCViewer2021: src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o
 bin/ESCViewer2021: src/CMakeFiles/ESCViewer2021.dir/main.cpp.o
 bin/ESCViewer2021: src/CMakeFiles/ESCViewer2021.dir/build.make
 bin/ESCViewer2021: src/CMakeFiles/ESCViewer2021.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/dgoncalves/Downloads/tracer/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../bin/ESCViewer2021"
-	cd /Users/dgoncalves/Downloads/tracer/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ESCViewer2021.dir/link.txt --verbose=$(VERBOSE)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/dgoncalves/code/PathTracer/tracer/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable ../bin/ESCViewer2021"
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ESCViewer2021.dir/link.txt --verbose=$(VERBOSE)
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold "Copying models"
-	cd /Users/dgoncalves/Downloads/tracer/src && /usr/local/Cellar/cmake/3.20.1/bin/cmake -E copy_directory /Users/dgoncalves/Downloads/tracer/src/models /Users/dgoncalves/Downloads/tracer/bin/models
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && /usr/local/Cellar/cmake/3.20.5/bin/cmake -E copy_directory /Users/dgoncalves/code/PathTracer/tracer/src/models /Users/dgoncalves/code/PathTracer/tracer/bin/models
 
 # Rule to build all files generated by this target.
 src/CMakeFiles/ESCViewer2021.dir/build: bin/ESCViewer2021
 .PHONY : src/CMakeFiles/ESCViewer2021.dir/build
 
 src/CMakeFiles/ESCViewer2021.dir/clean:
-	cd /Users/dgoncalves/Downloads/tracer/src && $(CMAKE_COMMAND) -P CMakeFiles/ESCViewer2021.dir/cmake_clean.cmake
+	cd /Users/dgoncalves/code/PathTracer/tracer/src && $(CMAKE_COMMAND) -P CMakeFiles/ESCViewer2021.dir/cmake_clean.cmake
 .PHONY : src/CMakeFiles/ESCViewer2021.dir/clean
 
 src/CMakeFiles/ESCViewer2021.dir/depend:
-	cd /Users/dgoncalves/Downloads/tracer && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/dgoncalves/Downloads/tracer /Users/dgoncalves/Downloads/tracer/src /Users/dgoncalves/Downloads/tracer /Users/dgoncalves/Downloads/tracer/src /Users/dgoncalves/Downloads/tracer/src/CMakeFiles/ESCViewer2021.dir/DependInfo.cmake --color=$(COLOR)
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/dgoncalves/code/PathTracer/tracer /Users/dgoncalves/code/PathTracer/tracer/src /Users/dgoncalves/code/PathTracer/tracer /Users/dgoncalves/code/PathTracer/tracer/src /Users/dgoncalves/code/PathTracer/tracer/src/CMakeFiles/ESCViewer2021.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : src/CMakeFiles/ESCViewer2021.dir/depend
 

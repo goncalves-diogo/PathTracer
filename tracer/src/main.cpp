@@ -240,7 +240,7 @@ int main(int argc, char *argv[]) {
     scene_geom.push_back(ab);
   }
 
-  //BVH tree = BVH(scene_geom);
+  // BVH tree = BVH(scene_geom);
 
   int image_width = windowSize.x;
   int image_height = windowSize.y;
@@ -262,6 +262,9 @@ int main(int argc, char *argv[]) {
     int render_height = image_height - i;
     int render_width = 0;
 
+    /* render(render_height, render_width, image_height, image_width, SceneMesh,
+     */
+    /* cam, image, distrib); */
     threads.push_back(std::thread(render, render_height, render_width,
                                   image_height, image_width, SceneMesh, cam,
                                   image, distrib));

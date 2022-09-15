@@ -48,19 +48,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /usr/local/Cellar/cmake/3.20.1/bin/cmake
+CMAKE_COMMAND = /usr/local/Cellar/cmake/3.20.5/bin/cmake
 
 # The command to remove a file.
-RM = /usr/local/Cellar/cmake/3.20.1/bin/cmake -E rm -f
+RM = /usr/local/Cellar/cmake/3.20.5/bin/cmake -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/dgoncalves/Downloads/tracer
+CMAKE_SOURCE_DIR = /Users/dgoncalves/code/PathTracer/tracer
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/dgoncalves/Downloads/tracer
+CMAKE_BINARY_DIR = /Users/dgoncalves/code/PathTracer/tracer
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -68,7 +68,7 @@ CMAKE_BINARY_DIR = /Users/dgoncalves/Downloads/tracer
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/local/Cellar/cmake/3.20.1/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.20.5/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -78,7 +78,7 @@ rebuild_cache/fast: rebuild_cache
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/local/Cellar/cmake/3.20.1/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	/usr/local/Cellar/cmake/3.20.5/bin/ccmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -87,14 +87,14 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	cd /Users/dgoncalves/Downloads/tracer && $(CMAKE_COMMAND) -E cmake_progress_start /Users/dgoncalves/Downloads/tracer/CMakeFiles /Users/dgoncalves/Downloads/tracer/src//CMakeFiles/progress.marks
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/dgoncalves/Downloads/tracer/CMakeFiles 0
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(CMAKE_COMMAND) -E cmake_progress_start /Users/dgoncalves/code/PathTracer/tracer/CMakeFiles /Users/dgoncalves/code/PathTracer/tracer/src//CMakeFiles/progress.marks
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/dgoncalves/code/PathTracer/tracer/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
 clean:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/clean
 .PHONY : clean
 
 # The main clean target
@@ -103,22 +103,22 @@ clean/fast: clean
 
 # Prepare targets for installation.
 preinstall: all
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall
 
 # Prepare targets for installation.
 preinstall/fast:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/preinstall
 .PHONY : preinstall/fast
 
 # clear depends
 depend:
-	cd /Users/dgoncalves/Downloads/tracer && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 1
 .PHONY : depend
 
 # Convenience name for target.
 src/CMakeFiles/ESCViewer2021.dir/rule:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ESCViewer2021.dir/rule
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 src/CMakeFiles/ESCViewer2021.dir/rule
 .PHONY : src/CMakeFiles/ESCViewer2021.dir/rule
 
 # Convenience name for target.
@@ -127,7 +127,7 @@ ESCViewer2021: src/CMakeFiles/ESCViewer2021.dir/rule
 
 # fast build rule for target.
 ESCViewer2021/fast:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/build
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/build
 .PHONY : ESCViewer2021/fast
 
 main.o: main.cpp.o
@@ -135,7 +135,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/main.cpp.o
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -143,7 +143,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/main.cpp.i
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -151,7 +151,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/main.cpp.s
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 scene/sceneloader.o: scene/sceneloader.cpp.o
@@ -159,7 +159,7 @@ scene/sceneloader.o: scene/sceneloader.cpp.o
 
 # target to build an object file
 scene/sceneloader.cpp.o:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o
 .PHONY : scene/sceneloader.cpp.o
 
 scene/sceneloader.i: scene/sceneloader.cpp.i
@@ -167,7 +167,7 @@ scene/sceneloader.i: scene/sceneloader.cpp.i
 
 # target to preprocess a source file
 scene/sceneloader.cpp.i:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.i
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.i
 .PHONY : scene/sceneloader.cpp.i
 
 scene/sceneloader.s: scene/sceneloader.cpp.s
@@ -175,7 +175,7 @@ scene/sceneloader.s: scene/sceneloader.cpp.s
 
 # target to generate assembly for a file
 scene/sceneloader.cpp.s:
-	cd /Users/dgoncalves/Downloads/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.s
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(MAKE) $(MAKESILENT) -f src/CMakeFiles/ESCViewer2021.dir/build.make src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.s
 .PHONY : scene/sceneloader.cpp.s
 
 # Help Target
@@ -204,6 +204,6 @@ help:
 # No rule that depends on this can have commands that come from listfiles
 # because they might be regenerated.
 cmake_check_build_system:
-	cd /Users/dgoncalves/Downloads/tracer && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
+	cd /Users/dgoncalves/code/PathTracer/tracer && $(CMAKE_COMMAND) -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR) --check-build-system CMakeFiles/Makefile.cmake 0
 .PHONY : cmake_check_build_system
 

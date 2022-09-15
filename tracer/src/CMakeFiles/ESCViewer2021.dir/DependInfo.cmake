@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/Users/dgoncalves/Downloads/tracer/src/main.cpp" "src/CMakeFiles/ESCViewer2021.dir/main.cpp.o" "gcc" "src/CMakeFiles/ESCViewer2021.dir/main.cpp.o.d"
-  "/Users/dgoncalves/Downloads/tracer/src/scene/sceneloader.cpp" "src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o" "gcc" "src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o.d"
+  "/Users/dgoncalves/code/PathTracer/tracer/src/main.cpp" "src/CMakeFiles/ESCViewer2021.dir/main.cpp.o" "gcc" "src/CMakeFiles/ESCViewer2021.dir/main.cpp.o.d"
+  "/Users/dgoncalves/code/PathTracer/tracer/src/scene/sceneloader.cpp" "src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o" "gcc" "src/CMakeFiles/ESCViewer2021.dir/scene/sceneloader.cpp.o.d"
   )
 
 # Targets to which this target links.

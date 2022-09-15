@@ -83,7 +83,6 @@ include/divisible/*
 
 build/**/*
 
-include/*
 lib/*
-bin/*
+build/*
 test/test_runner

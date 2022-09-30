@@ -7,6 +7,6 @@ make
 cd bin/
 # Makefile
 
-./ESCViewer2021 -m models/cornell/CornellBox-Empty-CO.obj
+./ESCViewer2021 -m models/cornell/CornellBox-Mirror.obj
 
 open output.ppm

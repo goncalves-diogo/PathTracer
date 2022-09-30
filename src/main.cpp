@@ -230,15 +230,21 @@ int main(int argc, char *argv[]) {
     ModelLoaded = true;
   }
 
-  // create bvh_tree
-  std::vector<AABB> scene_geom;
+  /* for (auto geo : SceneMesh.geometry) { */
+  /*   std::cout << "Material ka R:" << geo.object_material.ka.r; */
+  /*   std::cout << "G:" << geo.object_material.ka.r; */
+  /*   std::cout << "B:" << geo.object_material.ka.r << std::endl; */
+  /* } */
 
-  for (auto geom : SceneMesh.geometry) {
-    AABB ab = AABB();
-    for (auto abc : geom.vertex)
-      ab.extend(abc);
-    scene_geom.push_back(ab);
-  }
+  // create bvh_tree
+  /* std::vector<AABB> scene_geom; */
+
+  /* for (auto geom : SceneMesh.geometry) { */
+  /*   AABB ab = AABB(); */
+  /*   for (auto abc : geom.vertex) */
+  /*     ab.extend(abc); */
+  /*   scene_geom.push_back(ab); */
+  /* } */
 
   // BVH tree = BVH(scene_geom);
 

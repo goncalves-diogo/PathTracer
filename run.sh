@@ -7,6 +7,10 @@ make
 cd bin/
 # Makefile
 
-./ESCViewer2021 -m models/cornell/CornellBox-Empty-CO.obj
+./Tracer -m models/cornell/CornellBox-Empty-CO.obj
 
-open output.ppm
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    open output.ppm
+else
+    feh output.ppm
+fi

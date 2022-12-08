@@ -107,7 +107,7 @@ tracer::vec3<float> *render(int render_height, int render_width,
 
       for (auto &lightID : SceneMesh.light_sources) {
         auto light = SceneMesh.geometry[lightID];
-        light.face_index.size();
+        /* light.face_index.size(); */
         std::uniform_int_distribution<int> distrib1(0, light.face_index.size() -
                                                            1);
 

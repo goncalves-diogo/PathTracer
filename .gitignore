@@ -86,4 +86,4 @@ build/**/*
 lib/*
 build/*
 test/test_runner
-.cache/
+.cache/*

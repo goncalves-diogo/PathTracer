@@ -7,7 +7,8 @@ Simple ray tracing with russian roulette, BBVH and multi-threading
 To run the project do CMake.
 
 Result image for default ./run.sh
-![Ray tracer](./docs/output.ppm)
+
+<img src="docs/output.ppm" width="1024"/>
 
 ### Todo
 
